@@ -66,8 +66,6 @@ OnAlert?.Invoke("위험!");   // 구독자가 없을 수 있으니 ?. 로 안전
 
 ### 예제 1 — `DelegateBasics` : 델리게이트 타입 직접 선언
 ```csharp
-delegate int BinaryOp(int a, int b);
-
 BinaryOp add = (a, b) => a + b;
 BinaryOp mul = (a, b) => a * b;
 
@@ -75,6 +73,9 @@ int Apply(int x, int y, BinaryOp op) => op(x, y);
 
 Console.WriteLine($"Apply(10, 5, add) = {Apply(10, 5, add)}");
 Console.WriteLine($"Apply(10, 5, mul) = {Apply(10, 5, mul)}");
+
+// top-level statements 파일에서는 타입 선언이 뒤로 와야 한다.
+delegate int BinaryOp(int a, int b);
 ```
 **실행 결과**
 ```
