@@ -10,13 +10,14 @@ Console.WriteLine($"안녕, {name}!");
 Person p = GetUser();
 Console.WriteLine($"Name = {p.Name}");
 
+// top-level statements 다음에 로컬 함수 → 그 뒤에 타입 선언 순서를 지킨다.
+static Person GetUser()
+{
+    return new Person { Name = "Alice" };
+}
+
 internal sealed class Person
 {
     // 생성 직후 곧장 채울 거지만, 컴파일러는 그걸 모른다 → null! 로 초기화 의도 표시.
     public string Name { get; set; } = null!;
-}
-
-static Person GetUser()
-{
-    return new Person { Name = "Alice" };
 }
