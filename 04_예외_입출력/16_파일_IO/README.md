@@ -119,14 +119,16 @@ File.Delete(path);
 string path = Path.GetTempFileName();
 File.WriteAllLines(path, ["사과", "바나나", "체리"]);
 
-using var sr = new StreamReader(path);
-
-int lineNo = 1;
-string? line;
-while ((line = sr.ReadLine()) is not null)
+// using 블록으로 sr 의 수명을 명시적으로 한정.
+using (var sr = new StreamReader(path))
 {
-    Console.WriteLine($"{lineNo}: {line}");
-    lineNo++;
+    int lineNo = 1;
+    string? line;
+    while ((line = sr.ReadLine()) is not null)
+    {
+        Console.WriteLine($"{lineNo}: {line}");
+        lineNo++;
+    }
 }
 
 File.Delete(path);
@@ -137,7 +139,7 @@ File.Delete(path);
 2: 바나나
 3: 체리
 ```
-**메모:** 큰 파일에서도 메모리 사용이 일정합니다. `using` 으로 자동 닫힘.
+**메모:** 큰 파일에서도 메모리 사용이 일정합니다. `using` 블록을 빠져나오면 핸들이 즉시 닫혀, 바로 이어지는 `File.Delete` 가 Windows 의 파일 잠금에 걸리지 않습니다 (`using var` 였다면 메서드 범위 끝까지 핸들이 유지되어 충돌).
 
 ### 예제 4 — `PathHelpers` : 경로를 쪼개고 합치기
 ```csharp

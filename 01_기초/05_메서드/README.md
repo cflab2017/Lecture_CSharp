@@ -97,18 +97,21 @@ Add(10,20) = 30
 
 ### 예제 2 — `Overloading/Program.cs` : 같은 이름, 다른 시그니처
 ```csharp
-static int Add(int a, int b) => a + b;
-static double Add(double a, double b) => a + b;
+Console.WriteLine($"Calc.Add(1, 2)       = {Calc.Add(1, 2)}");
+Console.WriteLine($"Calc.Add(1.5, 2.5)   = {Calc.Add(1.5, 2.5)}");
 
-Console.WriteLine($"Add(1, 2)       = {Add(1, 2)}");
-Console.WriteLine($"Add(1.5, 2.5)   = {Add(1.5, 2.5)}");
+static class Calc
+{
+    public static int Add(int a, int b) => a + b;
+    public static double Add(double a, double b) => a + b;
+}
 ```
 **실행 결과**
 ```
-Add(1, 2)       = 3
-Add(1.5, 2.5)   = 4
+Calc.Add(1, 2)       = 3
+Calc.Add(1.5, 2.5)   = 4
 ```
-**메모:** `=>` 는 **expression-bodied member** — 본문이 한 줄이면 깔끔하게 쓸 수 있습니다.
+**메모:** `=>` 는 **expression-bodied member** — 본문이 한 줄이면 깔끔하게 쓸 수 있습니다. 로컬 함수는 오버로딩이 안 되므로 같은 이름을 쓰려면 `static class` 로 감싸야 합니다.
 
 ### 예제 3 — `OutRefIn/Program.cs` : `out`, `ref`, `in` 시연
 ```csharp
