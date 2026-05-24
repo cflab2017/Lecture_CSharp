@@ -1,5 +1,9 @@
 # C# 입문 (.NET 8 LTS) — 22편
 
+> 🌐 **전체 22편 강의 보기** — [https://coding-now.com/blog/csharp](https://coding-now.com/blog/csharp)
+>
+> 한국어 무료 코딩 강의 264편 + 개발자 도구 모음 · Coding Now
+
 C# 과 .NET 의 핵심 기능을 짧고 실용적인 22단원으로 정리한 강의 트랙입니다.
 프로그래밍 입문자도 따라올 수 있도록 구성했고, 다른 OOP 언어(Java/C++/Python) 경험자라면
 빠르게 C# 특유의 모던 기능(records, pattern matching, nullable reference type, async/await)까지
